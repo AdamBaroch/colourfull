@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1ea7o12ljmqw"]
+
+[ext_resource type="Script" path="res://scenes/enemy_kill.gd" id="1_ij5sl"]
+
+[node name="enemy_kill" type="Area2D" groups=["enemy_kill"]]
+script = ExtResource("1_ij5sl")
