@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c7cfi5w4qxb4y" path="res://icon.svg" id="1_ajjth"]
 [ext_resource type="PackedScene" uid="uid://85nw85gnkvb0" path="res://scenes/player.tscn" id="1_nyxcr"]
-[ext_resource type="PackedScene" uid="uid://d1ea7o12ljmqw" path="res://scenes/enemy_kill.tscn" id="3_a35wl"]
+[ext_resource type="PackedScene" uid="uid://d0s6h5anx4iys" path="res://scenes/enemy_kill.tscn" id="3_a35wl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up028"]
 radius = 57.4609
@@ -20,7 +20,6 @@ position = Vector2(1073, 232)
 scale = Vector2(0.457031, 0.371094)
 
 [node name="Sprite2D" type="Sprite2D" parent="enemy_kill"]
-scale = Vector2(1, 1)
 texture = ExtResource("1_ajjth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_kill"]
@@ -84,3 +83,6 @@ texture = ExtResource("1_ajjth")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(64, 0)
 shape = SubResource("RectangleShape2D_4qo3l")
+
+[node name="Player" parent="." instance=ExtResource("1_nyxcr")]
+position = Vector2(796, 359)

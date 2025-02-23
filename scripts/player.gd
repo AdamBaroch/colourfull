@@ -2,18 +2,18 @@ extends CharacterBody2D
 
 # Parametry pro ovládání postavy
 var acceleration: float = 1000.0   # Rychlost akcelerace při stisknutí vstupu
-var friction: float = 1200.0       # Brzdící síla (frikce) při absenci vstupu
-var max_speed: float = 400.0      # Maximální rychlost po stranách
+var friction: float = 1800.0       # Brzdící síla (frikce) při absenci vstupu
+var max_speed: float = 500.0      # Maximální rychlost po stranách
 
 # Parametry pohybu a skoku
 var gravitation = 2000                         # základní gravitace
 var jump_height = -800                        # počáteční impuls skoku (směr nahoru má zápornou hodnotu)
-var max_falling_speed = 800               # maximální rychlost při pádu
+var max_falling_speed = 1000               # maximální rychlost při pádu
 var double_jump_height = -600
 var double_jump = 0
 # Apex modifier – modifikátor gravitace v okolí vrcholu skoku
 var apex_gravitation_multiplikator = 0.4
-var fall_gravitation_multiplikator = 1.5        # při pádu chceme vyšší gravitaci
+var fall_gravitation_multiplikator = 2     # při pádu chceme vyšší gravitaci
 
 # Parametry pro jump buffering a coyote time (v sekundách)
 var jump_buffer_time = 0.2                   # doba, po kterou se uchovává požadavek na skok
@@ -118,4 +118,9 @@ func move_character():
 	
 func _on_dmg_picking_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy_kill"):
-		print("collided with enemy")
+		var hit_direction = global_position - area.global_position
+		on_enemy_hit(hit_direction)
+		print("hit")
+		
+func on_enemy_hit(hit_direction):
+	pass
