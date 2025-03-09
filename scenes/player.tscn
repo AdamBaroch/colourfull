@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://85nw85gnkvb0"]
+[gd_scene load_steps=7 format=3 uid="uid://85nw85gnkvb0"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ckbj6"]
 [ext_resource type="Texture2D" uid="uid://c7cfi5w4qxb4y" path="res://icon.svg" id="1_rq5lm"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="3_lx5qb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gkcwc"]
 animations = [{
@@ -38,7 +39,11 @@ editor_draw_drag_margin = true
 
 [node name="dmg_picking_area" type="Area2D" parent="." groups=["player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="dmg_picking_area"]
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_lx5qb")
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_yeri0")
 

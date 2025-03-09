@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsyna54mv2j0c"]
+[gd_scene load_steps=8 format=3 uid="uid://dsyna54mv2j0c"]
 
 [ext_resource type="Texture2D" uid="uid://c7cfi5w4qxb4y" path="res://icon.svg" id="1_ajjth"]
 [ext_resource type="PackedScene" uid="uid://85nw85gnkvb0" path="res://scenes/player.tscn" id="1_nyxcr"]
 [ext_resource type="PackedScene" uid="uid://d0s6h5anx4iys" path="res://scenes/enemy_kill.tscn" id="3_a35wl"]
+[ext_resource type="PackedScene" uid="uid://cbl8oq8026g05" path="res://scenes/enemy.tscn" id="4_1fn6j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up028"]
 radius = 57.4609
@@ -24,9 +25,6 @@ texture = ExtResource("1_ajjth")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_kill"]
 shape = SubResource("CircleShape2D_up028")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_nyxcr")]
-position = Vector2(413, 230)
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
 position = Vector2(937, 284)
@@ -86,3 +84,6 @@ shape = SubResource("RectangleShape2D_4qo3l")
 
 [node name="Player" parent="." instance=ExtResource("1_nyxcr")]
 position = Vector2(796, 359)
+
+[node name="enemy_basic" parent="." instance=ExtResource("4_1fn6j")]
+position = Vector2(956, 244)

@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 # Parametry pro ovládání postavy
-var acceleration: float = 1000.0   # Rychlost akcelerace při stisknutí vstupu
-var friction: float = 1800.0       # Brzdící síla (frikce) při absenci vstupu
-var max_speed: float = 500.0      # Maximální rychlost po stranách
+var acceleration: float = 1300.0   # Rychlost akcelerace při stisknutí vstupu
+var friction: float = 2500.0       # Brzdící síla (frikce) při absenci vstupu
+var max_speed: float = 650.0      # Maximální rychlost po stranách
 
 # Parametry pohybu a skoku
 var gravitation = 2000                         # základní gravitace
@@ -13,7 +13,7 @@ var double_jump_height = -600
 var double_jump = 0
 # Apex modifier – modifikátor gravitace v okolí vrcholu skoku
 var apex_gravitation_multiplikator = 0.4
-var fall_gravitation_multiplikator = 2     # při pádu chceme vyšší gravitaci
+var fall_gravitation_multiplikator = 2    # při pádu chceme vyšší gravitaci
 
 # Parametry pro jump buffering a coyote time (v sekundách)
 var jump_buffer_time = 0.2                   # doba, po kterou se uchovává požadavek na skok
@@ -25,7 +25,7 @@ var coyote_counter = 0.0                     # čítač pro coyote time
 var jump_cut_multiplier = 0.4
 
 # Poduzel pro ledge detection (např. umístěný na straně postavy, směřující dolů)
-@onready var ledge_detector = $LedgeDetector
+#@onready var ledge_detector = $LedgeDetector
 
 func _physics_process(delta):
 	process_input(delta)
