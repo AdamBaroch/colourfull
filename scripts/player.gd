@@ -24,9 +24,13 @@ var coyote_counter = 0.0                     # čítač pro coyote time
 # Variabilní výška skoku – pokud hráč uvolní tlačítko, skok se "ořízne"
 var jump_cut_multiplier = 0.4
 
+@export var attacking = false
+
 # Poduzel pro ledge detection (např. umístěný na straně postavy, směřující dolů)
 #@onready var ledge_detector = $LedgeDetector
-
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("attack"):
+		attack()
 func _physics_process(delta):
 	process_input(delta)
 	apply_friction(delta)
@@ -115,12 +119,6 @@ func move_character():
 	# V Godot 4, CharacterBody2D používá vestavěnou proměnnou velocity,
 	# a move_and_slide() očekává jako argument směr "up".
 	move_and_slide()
-	
-func _on_dmg_picking_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy_kill"):
-		var hit_direction = global_position - area.global_position
-		on_enemy_hit(hit_direction)
-		print("hit")
-		
-func on_enemy_hit(hit_direction):
+
+func attack():
 	pass
