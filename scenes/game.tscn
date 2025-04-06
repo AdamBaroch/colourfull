@@ -12,6 +12,9 @@ size = Vector2(126.304, 120)
 
 [node name="Game" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("1_nyxcr")]
+position = Vector2(781, 317)
+
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
 position = Vector2(937, 284)
 
@@ -57,7 +60,7 @@ position = Vector2(3.85714, 345)
 shape = SubResource("RectangleShape2D_lxthw")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(732, 430)
+position = Vector2(742, 430)
 
 [node name="Icon" type="Sprite2D" parent="StaticBody2D2"]
 position = Vector2(65, 3.05176e-05)
@@ -68,8 +71,8 @@ texture = ExtResource("1_ajjth")
 position = Vector2(64, 0)
 shape = SubResource("RectangleShape2D_4qo3l")
 
-[node name="Player" parent="." instance=ExtResource("1_nyxcr")]
-position = Vector2(796, 359)
-
 [node name="enemy_basic" parent="." instance=ExtResource("4_1fn6j")]
 position = Vector2(975, 248)
+
+[node name="enemy_basic2" parent="." instance=ExtResource("4_1fn6j")]
+position = Vector2(156, 119)

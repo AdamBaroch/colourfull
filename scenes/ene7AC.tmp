@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbl8oq8026g05"]
+[gd_scene load_steps=10 format=3 uid="uid://cbl8oq8026g05"]
 
 [ext_resource type="Script" path="res://components/health_component.gd" id="1_dms76"]
 [ext_resource type="Script" path="res://scripts/enemy_basic.gd" id="1_r0t7y"]
 [ext_resource type="Script" path="res://components/hurt_box.gd" id="2_ut8dj"]
-[ext_resource type="Script" path="res://scripts/state_machine.gd" id="4_5s4l5"]
-[ext_resource type="Script" path="res://States/EnemyAttack.gd" id="4_54mjs"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="4_kqa43"]
 [ext_resource type="Script" path="res://States/EnemyIdle.gd" id="5_y8b02"]
 [ext_resource type="Script" path="res://States/EnemyFollow.gd" id="6_ux7v4"]
 
@@ -13,7 +12,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_elhgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fd0o3"]
-size = Vector2(1019, 246)
+size = Vector2(384, 74)
 
 [node name="enemy_basic" type="CharacterBody2D"]
 script = ExtResource("1_r0t7y")
@@ -33,12 +32,8 @@ health = NodePath("../HealthComponent")
 shape = SubResource("CircleShape2D_elhgy")
 
 [node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_5s4l5")
+script = ExtResource("4_kqa43")
 initial_state = NodePath("Idle")
-
-[node name="Attack" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("4_54mjs")
-enemy = NodePath("../..")
 
 [node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_y8b02")
@@ -51,10 +46,9 @@ enemy = NodePath("../..")
 [node name="Follow_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Follow_area"]
-position = Vector2(0.5, -113)
+position = Vector2(0, -27)
 shape = SubResource("RectangleShape2D_fd0o3")
 
 [connection signal="target_is_dead" from="HealthComponent" to="." method="_on_health_component_target_is_dead"]
 [connection signal="received_damage" from="Hurtbox" to="HealthComponent" method="_on_hurtbox_received_damage"]
 [connection signal="body_entered" from="Follow_area" to="State_Machine/Idle" method="_on_follow_area_body_entered"]
-[connection signal="body_exited" from="Follow_area" to="State_Machine/Follow" method="_on_follow_area_body_exited"]

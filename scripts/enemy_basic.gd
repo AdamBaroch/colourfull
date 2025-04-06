@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var gravitation = 2000    
 
 func _physics_process(delta):

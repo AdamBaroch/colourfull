@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_elhgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fd0o3"]
-size = Vector2(1019, 246)
+size = Vector2(593, 157)
 
 [node name="enemy_basic" type="CharacterBody2D"]
 script = ExtResource("1_r0t7y")
@@ -36,9 +36,8 @@ shape = SubResource("CircleShape2D_elhgy")
 script = ExtResource("4_5s4l5")
 initial_state = NodePath("Idle")
 
-[node name="Attack" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
+[node name="Attack" type="Node" parent="State_Machine"]
 script = ExtResource("4_54mjs")
-enemy = NodePath("../..")
 
 [node name="Idle" type="Node" parent="State_Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_y8b02")
@@ -51,7 +50,7 @@ enemy = NodePath("../..")
 [node name="Follow_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Follow_area"]
-position = Vector2(0.5, -113)
+position = Vector2(0.5, -68.5)
 shape = SubResource("RectangleShape2D_fd0o3")
 
 [connection signal="target_is_dead" from="HealthComponent" to="." method="_on_health_component_target_is_dead"]

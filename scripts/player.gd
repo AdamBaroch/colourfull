@@ -41,7 +41,6 @@ func _physics_process(delta):
 	process_variable_jump()
 # 	detect_ledge()
 	move_character()
-	
 # Aplikace gravitace s využitím apex modifieru a omezení rychlosti pádu
 func apply_gravity(delta):
 	if abs(velocity.y) < 20:
