@@ -13,8 +13,6 @@ func randomize_wander():
 	if move_direction == 0:
 		move_direction = -1
 	wander_time = randf_range(1,3)
-	print(move_direction)
-	print(wander_time)
 	
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
@@ -37,5 +35,4 @@ func Physics_Update(delta: float):
 		
 func _on_follow_area_body_entered(body: CharacterBody2D) -> void:
 	if body.name == "Player":
-		print("entered")
 		Transitioned.emit(self,"Follow")

@@ -19,7 +19,6 @@ func Physics_Update(delta:float):
 		move_direction = -1
 	enemy.velocity.x = move_direction * move_speed * delta 
 	if abs(player.global_position.x - enemy.global_position.x) < 125 and abs(player.global_position.y - enemy.global_position.y) < 150: 
-		
 		Transitioned.emit(self, "attack")
 		
 func _on_follow_area_body_exited(body: CharacterBody2D) -> void:

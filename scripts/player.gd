@@ -16,13 +16,17 @@ var apex_gravitation_multiplikator = 0.4
 var fall_gravitation_multiplikator = 2    # při pádu chceme vyšší gravitaci
 
 # Parametry pro jump buffering a coyote time (v sekundách)
-var jump_buffer_time = 0.2                   # doba, po kterou se uchovává požadavek na skok
+var jump_buffer_time = 0.1                  # doba, po kterou se uchovává požadavek na skok
 var coyote_time = 0.15                        # doba po opuštění země, kdy se dovolí skok
 var jump_buffer_counter = 0.0                # čítač pro jump buffering
 var coyote_counter = 0.0                     # čítač pro coyote time
 
 # Variabilní výška skoku – pokud hráč uvolní tlačítko, skok se "ořízne"
 var jump_cut_multiplier = 0.4
+
+#variables pro health
+var current_health:  int = 3
+var max_health: int = 3
 
 @export var attacking = false
 
@@ -121,3 +125,11 @@ func move_character():
 
 func attack():
 	pass
+
+
+func _on_hurtbox_player_body_entered(body: Node2D) -> void:
+	if body.is_in_group("damage"):
+		current_health -= 1
+		if current_health == 0:
+			current_health = max_health
+		print(current_health)

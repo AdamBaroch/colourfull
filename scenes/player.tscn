@@ -15,13 +15,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sd6ie"]
-radius = 31.0644
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_adhf7"]
+radius = 28.0
+height = 66.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yeri0"]
-size = Vector2(55, 57)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqtn0"]
+size = Vector2(63, 64)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player", "player"]]
 script = ExtResource("1_ckbj6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -30,7 +31,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gkcwc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sd6ie")
+shape = SubResource("CapsuleShape2D_adhf7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 1.0
@@ -41,6 +42,10 @@ editor_draw_drag_margin = true
 script = ExtResource("3_lx5qb")
 damage = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_yeri0")
+[node name="hurtbox_player" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox_player"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_xqtn0")
+
+[connection signal="body_entered" from="hurtbox_player" to="." method="_on_hurtbox_player_body_entered"]

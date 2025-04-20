@@ -10,14 +10,9 @@ var attack_movement = 40000
 
 var transition_time = 0.5
 
-func attack(delta):
-	var direction_x = player.global_position.x - enemy.global_position.x
-	if player.global_position.x - enemy.global_position.x > 0:
-		move_direction = 1
-	else:
-		move_direction = -1
+func attack(delta, move_direction):
 	enemy.velocity.x = attack_movement * move_direction * delta 
-	print(enemy.velocity.x)
+
 	if transition_time > 0:
 		transition_time -= delta
 	else:
@@ -40,6 +35,11 @@ func Physics_Update(_delta: float):
 	if attack_time > 0:
 		enemy.velocity.x = 0
 		attack_time -= _delta
+		var direction_x = player.global_position.x - enemy.global_position.x
+		if player.global_position.x - enemy.global_position.x > 0:
+			move_direction = 1
+		else:
+			move_direction = -1
 	else:
-		attack(_delta)
+		attack(_delta, move_direction)
 	
