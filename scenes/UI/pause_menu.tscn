@@ -1,0 +1,189 @@
+[gd_scene load_steps=13 format=3 uid="uid://bejy5v7drkjgv"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_0lsr7"]
+[ext_resource type="Shader" path="res://scripts/menu_shader.gdshader" id="1_a231m"]
+[ext_resource type="FontFile" uid="uid://bdkxkxbk7fg77" path="res://assets/hud elements/PixelOperator8.ttf" id="2_6xdpw"]
+[ext_resource type="PackedScene" uid="uid://cq2t244f8fcs4" path="res://scenes/UI/options.tscn" id="4_4nqvg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mo2p"]
+shader = ExtResource("1_a231m")
+shader_parameter/lod = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jdqgu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_413mc"]
+bg_color = Color(0.678944, 0.678944, 0.678944, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bshdq"]
+bg_color = Color(0.277528, 0.277528, 0.277528, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut62h"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="Animation" id="Animation_7wb84"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.8]
+}
+
+[sub_resource type="Animation" id="Animation_2chdh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_en5ff"]
+_data = {
+"RESET": SubResource("Animation_2chdh"),
+"blur": SubResource("Animation_7wb84")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0lsr7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2mo2p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="menu" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -157.5
+offset_right = 266.0
+offset_bottom = 157.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main_Buttons" type="VBoxContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -88.0
+offset_right = 155.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="ResumeGame" type="Button" parent="menu/Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6xdpw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jdqgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_413mc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bshdq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ut62h")
+text = "Resume"
+
+[node name="Options" type="Button" parent="menu/Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6xdpw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jdqgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_413mc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bshdq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ut62h")
+text = "Options"
+
+[node name="ExitGame" type="Button" parent="menu/Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6xdpw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jdqgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_413mc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bshdq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ut62h")
+text = "Exit "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_en5ff")
+}
+
+[node name="Options" parent="." instance=ExtResource("4_4nqvg")]
+layout_mode = 1
+
+[connection signal="pressed" from="menu/Main_Buttons/ResumeGame" to="." method="_on_resume_game_pressed"]
+[connection signal="pressed" from="menu/Main_Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="menu/Main_Buttons/ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="Back" from="Options" to="." method="_on_options_back"]

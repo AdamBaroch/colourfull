@@ -3,13 +3,13 @@ extends CharacterBody2D
 # Parametry pro ovládání postavy
 var acceleration: float = 1300.0   # Rychlost akcelerace při stisknutí vstupu
 var friction: float = 2500.0       # Brzdící síla (frikce) při absenci vstupu
-var max_speed: float = 650.0      # Maximální rychlost po stranách
+var max_speed: float = 300.0      # Maximální rychlost po stranách
 
 # Parametry pohybu a skoku
 var gravitation = 2000                         # základní gravitace
-var jump_height = -800                        # počáteční impuls skoku (směr nahoru má zápornou hodnotu)
-var max_falling_speed = 1000               # maximální rychlost při pádu
-var double_jump_height = -600
+var jump_height = -600                        # počáteční impuls skoku (směr nahoru má zápornou hodnotu)
+var max_falling_speed = 800               # maximální rychlost při pádu
+var double_jump_height = -450
 var double_jump = 0
 # Apex modifier – modifikátor gravitace v okolí vrcholu skoku
 var apex_gravitation_multiplikator = 0.4
@@ -30,11 +30,13 @@ var max_health: int = 3
 
 @export var attacking = false
 
+@onready var animation = $AnimationPlayer
+@onready var weapon = $WeaponFX
+
 # Poduzel pro ledge detection (např. umístěný na straně postavy, směřující dolů)
 #@onready var ledge_detector = $LedgeDetector
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
-		attack()
+	pass
 func _physics_process(delta):
 	process_input(delta)
 	apply_friction(delta)
@@ -45,6 +47,7 @@ func _physics_process(delta):
 	process_variable_jump()
 # 	detect_ledge()
 	move_character()
+	animations()
 # Aplikace gravitace s využitím apex modifieru a omezení rychlosti pádu
 func apply_gravity(delta):
 	if abs(velocity.y) < 20:
@@ -124,12 +127,47 @@ func move_character():
 	move_and_slide()
 
 func attack():
-	pass
+	animation.play("attack")
+	weapon.play("attack_sword")
 
 
 func _on_hurtbox_player_body_entered(body: Node2D) -> void:
 	if body.is_in_group("damage"):
-		current_health -= 1
-		if current_health == 0:
-			current_health = max_health
-		print(current_health)
+		take_damage()
+
+func _on_hurtbox_player_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.is_in_group("damage"):
+		take_damage()
+
+func take_damage():
+	current_health -= 1
+	if current_health == 0:
+		current_health = max_health
+	print(current_health)
+
+#Stará se o animace
+func animations():
+#prohazování spritu
+	if velocity.x < 0:
+			$Sprite2D.flip_h = true
+			$Weapon.flip_h = true
+			$Weapon.offset.x = -9
+			$Hitbox.scale = Vector2(-1, 1)
+	elif velocity.x > 0:
+			$Sprite2D.flip_h = false
+			$Weapon.flip_h = false
+			$Weapon.offset.x = 13
+			$Hitbox.scale = Vector2(1, 1)
+#spouštění animací
+	if Input.is_action_just_pressed("attack"):
+		attack()
+	if animation.is_playing() and animation.current_animation == "attack":
+		pass
+	elif velocity.y < -1: 
+		animation.play("jump_up")
+	elif velocity.y > 1:
+		animation.play("fall")
+	elif velocity.x == 0:
+		animation.play("idle")
+	elif abs(velocity.x) > 0:
+		animation.play("run")

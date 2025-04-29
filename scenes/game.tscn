@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsyna54mv2j0c"]
+[gd_scene load_steps=9 format=3 uid="uid://dsyna54mv2j0c"]
 
 [ext_resource type="Texture2D" uid="uid://c7cfi5w4qxb4y" path="res://icon.svg" id="1_ajjth"]
 [ext_resource type="PackedScene" uid="uid://85nw85gnkvb0" path="res://scenes/player.tscn" id="1_nyxcr"]
 [ext_resource type="PackedScene" uid="uid://cbl8oq8026g05" path="res://scenes/enemy.tscn" id="4_1fn6j"]
+[ext_resource type="PackedScene" uid="uid://ttajjvp1bp8n" path="res://scenes/trap.tscn" id="4_kxq5k"]
+[ext_resource type="PackedScene" uid="uid://dwhey01ywxrw5" path="res://scenes/coin.tscn" id="5_505fg"]
+[ext_resource type="PackedScene" uid="uid://sbr8cgb4gtma" path="res://scenes/UI/coin_ui.tscn" id="6_bqxi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qo3l"]
 size = Vector2(289, 33)
@@ -76,3 +79,22 @@ position = Vector2(975, 248)
 
 [node name="enemy_basic2" parent="." instance=ExtResource("4_1fn6j")]
 position = Vector2(156, 119)
+
+[node name="spikes" parent="." instance=ExtResource("4_kxq5k")]
+position = Vector2(924, 403)
+
+[node name="spikes2" parent="." instance=ExtResource("4_kxq5k")]
+position = Vector2(1059, 518)
+
+[node name="Coin" parent="." instance=ExtResource("5_505fg")]
+position = Vector2(512, 273)
+
+[node name="enemy_basic3" parent="." instance=ExtResource("4_1fn6j")]
+position = Vector2(292, 515)
+
+[node name="enemy_basic4" parent="." instance=ExtResource("4_1fn6j")]
+position = Vector2(431, 513)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CoinUI" parent="CanvasLayer" instance=ExtResource("6_bqxi4")]

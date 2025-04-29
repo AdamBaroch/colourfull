@@ -2,7 +2,7 @@ extends State
 class_name EnemyIdle
 
 @export var enemy: CharacterBody2D
-@export var move_speed := 4000.0
+@export var move_speed := 2000.0
 
 var player: CharacterBody2D
 var move_direction: int
@@ -15,8 +15,10 @@ func randomize_wander():
 	wander_time = randf_range(1,3)
 	
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
-	enemy.modulate = Color(0, 1, 0, 1)
+	if not is_inside_tree():
+		push_warning("EnemyIdle: Uzel není ve stromu, přeskočeno Enter()")
+		return
+	player = get_tree().get_first_node_in_group("player")
 	randomize_wander()
 
 func Update(delta: float):

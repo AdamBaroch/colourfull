@@ -1,0 +1,181 @@
+[gd_scene load_steps=10 format=3 uid="uid://drpsplm24a7lg"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_oh4sh"]
+[ext_resource type="FontFile" uid="uid://bdkxkxbk7fg77" path="res://assets/hud elements/PixelOperator8.ttf" id="1_xb5xf"]
+[ext_resource type="Texture2D" uid="uid://bpureawfc124u" path="res://assets/hud elements/Snímek obrazovky 2025-04-26 190406.png" id="2_gmm7q"]
+[ext_resource type="PackedScene" uid="uid://cq2t244f8fcs4" path="res://scenes/UI/options.tscn" id="3_w7q44"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mhdgy"]
+texture = ExtResource("2_gmm7q")
+modulate_color = Color(0.737193, 0.737193, 0.737193, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66rws"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiaif"]
+bg_color = Color(0.678944, 0.678944, 0.678944, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh55r"]
+bg_color = Color(0.277528, 0.277528, 0.277528, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t3ex"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oh4sh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mhdgy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -165.0
+offset_right = 306.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("1_xb5xf")
+theme_override_font_sizes/font_size = 32
+text = "Little Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main_Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -50.0
+offset_right = 155.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="StartGame" type="Button" parent="Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xb5xf")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66rws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eiaif")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vh55r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1t3ex")
+text = "Start game"
+
+[node name="Options" type="Button" parent="Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xb5xf")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66rws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eiaif")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vh55r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1t3ex")
+text = "Options"
+
+[node name="ExitGame" type="Button" parent="Main_Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xb5xf")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66rws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eiaif")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vh55r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1t3ex")
+text = "Exit"
+
+[node name="Options" parent="." instance=ExtResource("3_w7q44")]
+layout_mode = 1
+offset_top = -95.0
+offset_bottom = 155.0
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -26.0
+offset_right = -6.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xb5xf")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66rws")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eiaif")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vh55r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1t3ex")
+text = "Credits"
+
+[connection signal="pressed" from="Main_Buttons/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Main_Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main_Buttons/ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="Back" from="Options" to="." method="_on_options_back"]
