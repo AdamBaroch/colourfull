@@ -1,6 +1,6 @@
 extends Node
 class_name State
- 
+ #This is root script for States
 signal Transitioned
 
 func Enter():

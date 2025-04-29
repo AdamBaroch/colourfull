@@ -2,10 +2,9 @@ extends Control
 
 @onready var label: Label = $Label
 
-# Called when the node enters the scene tree for the first time.
+# it connects on entering scene signal with method
 func _ready() -> void:
 	EventController.connect("coin_collected", on_event_coin_collected)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_event_coin_collected(value: int):
-	label.text = str(value)
+	label.text = str(value)#It updates number of coins

@@ -48,7 +48,7 @@ func _physics_process(delta):
 # 	detect_ledge()
 	move_character()
 	animations()
-# Aplikace gravitace s využitím apex modifieru a omezení rychlosti pádu
+# aplication of gravity with restriction of max fall and jump buffer
 func apply_gravity(delta):
 	if abs(velocity.y) < 20:
 		# Jsme blízko vrcholu skoku
@@ -66,7 +66,7 @@ func apply_gravity(delta):
 	if velocity.y > max_falling_speed:
 		velocity.y = max_falling_speed
 
-# Aktualizace časovačů pro coyote time a jump buffering
+# Actualization for jump buffering and coyotee timer
 func update_timers(delta):
 	if is_on_floor():
 		coyote_counter = coyote_time
@@ -78,7 +78,7 @@ func update_timers(delta):
 	else:
 		jump_buffer_counter -= delta
 
-# Zpracování skoku – využití jump buffering a coyote time
+# Processing jump (using coyotee timer and jump buffering timer)
 func process_jump():
 	if jump_buffer_counter > 0 and coyote_counter > 0:
 		velocity.y = jump_height
@@ -87,7 +87,7 @@ func process_jump():
 	elif double_jump == 0 and Input.is_action_just_pressed("ui_accept") and !is_on_floor():
 		velocity.y = double_jump_height
 		double_jump = 1
-# Zajištění variabilní výšky skoku – pokud hráč tlačítko uvolní, rychlost se sníží
+# If player releases jump button sooner jump is made shorter 
 func process_variable_jump():
 	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
@@ -97,7 +97,7 @@ func process_variable_jump():
 #		print("Detekován okraj!")
 		# Zde lze implementovat logiku pro chytání se okraje
 		
-# Zpracování vstupu – aktualizujeme horizontální složku rychlosti podle stisknutých tlačítek
+# We are controlling velocity.x based on inputs
 func process_input(delta: float) -> void:
 	var input_dir: int = 0
 	if Input.is_action_pressed("ui_right"):
@@ -108,7 +108,7 @@ func process_input(delta: float) -> void:
 	# Přičítáme akceleraci podle směru vstupu
 	velocity.x += input_dir * acceleration * delta
 
-# Aplikace frikce – pokud žádný vstup není aktivní, zpomalíme postavu směrem k nule
+# Aplication of friction (if you dont press anything player will slow to 0) 
 func apply_friction(delta: float) -> void:
 	if not (Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left")):
 		if velocity.x > 0:
@@ -116,38 +116,39 @@ func apply_friction(delta: float) -> void:
 		elif velocity.x < 0:
 			velocity.x = min(velocity.x + friction * delta, 0)
 
-# Omezení rychlosti – zajistíme, že absolutní hodnota rychlosti nepřekročí max_speed
+# Speed control - it makes sure player dont exceed max speed
 func clamp_speed() -> void:
 	if abs(velocity.x) > max_speed:
 		velocity.x = sign(velocity.x) * max_speed
-# Vykonání pohybu postavy
+#Moving the player
 func move_character():
 	# V Godot 4, CharacterBody2D používá vestavěnou proměnnou velocity,
 	# a move_and_slide() očekává jako argument směr "up".
 	move_and_slide()
 
+#it plays attack animation which activates hitbox to kill enemies
 func attack():
 	animation.play("attack")
 	weapon.play("attack_sword")
 
-
+#it makes sure enemies who is physical body give player damage
 func _on_hurtbox_player_body_entered(body: Node2D) -> void:
 	if body.is_in_group("damage"):
 		take_damage()
-
+#it makes sure enemies who is area give player damage
 func _on_hurtbox_player_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("damage"):
 		take_damage()
-
+#preparation for adding health of player and death to the game
 func take_damage():
 	current_health -= 1
 	if current_health == 0:
 		current_health = max_health
 	print(current_health)
 
-#Stará se o animace
+#takes care of animations
 func animations():
-#prohazování spritu
+#flipping the sprite 
 	if velocity.x < 0:
 			$Sprite2D.flip_h = true
 			$Weapon.flip_h = true
@@ -158,7 +159,7 @@ func animations():
 			$Weapon.flip_h = false
 			$Weapon.offset.x = 13
 			$Hitbox.scale = Vector2(1, 1)
-#spouštění animací
+#plays animation based on parameters
 	if Input.is_action_just_pressed("attack"):
 		attack()
 	if animation.is_playing() and animation.current_animation == "attack":

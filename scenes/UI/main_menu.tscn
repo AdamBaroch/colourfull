@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bdkxkxbk7fg77" path="res://assets/hud elements/PixelOperator8.ttf" id="1_xb5xf"]
 [ext_resource type="Texture2D" uid="uid://bpureawfc124u" path="res://assets/hud elements/Snímek obrazovky 2025-04-26 190406.png" id="2_gmm7q"]
 [ext_resource type="PackedScene" uid="uid://cq2t244f8fcs4" path="res://scenes/UI/options.tscn" id="3_w7q44"]
-[ext_resource type="Script" path="res://scenes/UI/credits_2.gd" id="5_tl0go"]
+[ext_resource type="Script" path="res://scripts/credits_2.gd" id="5_tl0go"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mhdgy"]
 texture = ExtResource("2_gmm7q")
