@@ -25,8 +25,8 @@ var coyote_counter = 0.0                     # čítač pro coyote time
 var jump_cut_multiplier = 0.4
 
 #variables pro health
-var current_health:  int = 3
-var max_health: int = 3
+var current_health:  int = 5
+var max_health: int = 5
 
 @export var attacking = false
 
@@ -142,9 +142,11 @@ func _on_hurtbox_player_area_shape_entered(area_rid: RID, area: Area2D, area_sha
 #preparation for adding health of player and death to the game
 func take_damage():
 	current_health -= 1
-	if current_health == 0:
-		current_health = max_health
 	print(current_health)
+	if current_health == 0:
+		GameController._on_dead()
+		get_tree().reload_current_scene()
+	
 
 #takes care of animations
 func animations():

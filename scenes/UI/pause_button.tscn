@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tr12h82w7byd"]
+
+[ext_resource type="Texture2D" uid="uid://du7lsor65spch" path="res://assets/hud elements/lifes_icon.png" id="1_j4udq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xc7l8"]
+
+[node name="pause_button" type="Button"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_right = -24.0
+offset_bottom = 24.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+theme_override_styles/normal = SubResource("StyleBoxTexture_xc7l8")
+icon = ExtResource("1_j4udq")
+icon_alignment = 1

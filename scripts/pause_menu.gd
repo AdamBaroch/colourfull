@@ -1,6 +1,8 @@
 extends Control
 @onready var menu: Panel = $menu
 @onready var options: Panel = $Options
+@onready var pause_button: Button = $"../pause_button"
+
 
 signal Pause
 signal Unpause
@@ -9,7 +11,7 @@ signal Unpause
 func _ready() -> void:
 	menu.visible = false
 	options.visible = false
-
+	pause_button.visible = true
 #it controls if someone pressed Escape
 func _process(delta):
 	test_Esc()
@@ -19,11 +21,13 @@ func resume():
 	get_tree().paused = false
 	menu.visible = false
 	options.visible = false
+	pause_button.visible = true
 	$AnimationPlayer.play_backwards("blur")
 #pauses game and shows menu
 func pause():
 	get_tree().paused = true
 	menu.visible = true
+	pause_button.visible = false
 	$AnimationPlayer.play("blur")
 
 #based on if game is paused pauses the game or resumes the game
@@ -51,3 +55,7 @@ func _on_exit_game_pressed() -> void:
 func _on_options_back() -> void:
 	menu.visible = true
 	options.visible = false
+
+
+func _on_pause_pressed() -> void:
+	pause()

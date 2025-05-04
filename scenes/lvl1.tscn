@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cmsm12eexly2n"]
+[gd_scene load_steps=19 format=4 uid="uid://cmsm12eexly2n"]
 
 [ext_resource type="Script" path="res://scenes/lvl_1.gd" id="1_ju65w"]
 [ext_resource type="Texture2D" uid="uid://dgf621b6obbxj" path="res://assets/tiles and background_foreground (new)/tileset_32x32(new).png" id="1_mqbw7"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dwhey01ywxrw5" path="res://scenes/coin.tscn" id="8_obkba"]
 [ext_resource type="Texture2D" uid="uid://d1xx5qujjxl2e" path="res://assets/miscellaneous sprites/grass_props.png" id="9_aa3ww"]
 [ext_resource type="Texture2D" uid="uid://brhvkqitmvdnm" path="res://assets/miscellaneous sprites/arrow_plate_right.png" id="10_qbuj7"]
+[ext_resource type="PackedScene" uid="uid://tr12h82w7byd" path="res://scenes/UI/pause_button.tscn" id="11_a8k6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j60h4"]
 texture = ExtResource("2_kwwik")
@@ -711,6 +712,8 @@ shape = SubResource("RectangleShape2D_su0ig")
 
 [node name="CoinUI" parent="CanvasLayer" instance=ExtResource("7_rkxat")]
 
+[node name="pause_button" parent="CanvasLayer" instance=ExtResource("11_a8k6p")]
+
 [node name="nature" type="Node" parent="."]
 
 [node name="GrassProps" type="Sprite2D" parent="nature"]
@@ -904,3 +907,4 @@ scale = Vector2(2, 2)
 texture = ExtResource("10_qbuj7")
 
 [connection signal="body_entered" from="transfer" to="." method="_on_transfer_body_entered"]
+[connection signal="pressed" from="CanvasLayer/pause_button" to="CanvasLayer/PauseMenu" method="_on_pause_pressed"]
